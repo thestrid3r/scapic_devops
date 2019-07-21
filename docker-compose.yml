@@ -1,0 +1,30 @@
+version: "3"
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: frontend/.
+    ports:
+      - 80:80
+    depends_on:
+      - "backend"
+    environment:
+      - "API_ROOT=http://backend:3000/api"
+  backend:
+    container_name: backend
+    build:
+      context: backend/.
+    depends_on:
+      - "mongo"
+    ports:
+      - 3000:3000
+    environment:
+      - "MONGODB_URI=mongodb://mongo:27017"
+      - "NODE_ENV=production"
+      - "SECRET=secret"
+      - "MADE_WITH=love"
+  # mongo:
+  #  image: "mongo:3.4"
+  #  container_name: mongo
+  #  ports:
+  #     - "27017:27017"
