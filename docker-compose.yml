@@ -14,17 +14,10 @@ services:
     container_name: backend
     build:
       context: backend/.
-    depends_on:
-      - "mongo"
     ports:
       - 3000:3000
     environment:
-      - "MONGODB_URI=mongodb://mongo:27017"
+      - "MONGODB_URI="
       - "NODE_ENV=production"
       - "SECRET=secret"
       - "MADE_WITH=love"
-  # mongo:
-  #  image: "mongo:3.4"
-  #  container_name: mongo
-  #  ports:
-  #     - "27017:27017"
